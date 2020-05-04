@@ -5,8 +5,8 @@ const chokidar = require('chokidar');
 const diff = require('deep-diff')
 
 const config = require('./config');
-const inputJSONFile = path.join(__dirname + '\\data\\eventsFile.json');
-const kafka_topic = 'example';
+const inputJSONFile = path.join(__dirname + '\\data\\dataFile.json');
+const kafka_topic = config.kafka_topic;
 let currentObj = null;
 
 const getCurrent = (file) => {
@@ -22,6 +22,7 @@ const getCurrent = (file) => {
 // ];
 const fetchTheNewDataAdded = (value) => {
     // need to handle different types of changes
+    //console.log(value);
     console.log(value.item.rhs);
     const msgObj = {
         "topic": kafka_topic,
